@@ -1,0 +1,329 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP1+239uJ6CvtDIubxbPB/w",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/cemrecaghan/cemrecaghan/blob/main/Modelleme%20ve%20Optimizasyon\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "MODELLEME VE OPTİMİZASYON                                                                                                                                                                                                          \n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "---\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "g5Nfy7lLFqJV"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "\n",
+        "**Doğrusal Programlama ile Birimlerin Performans Değerlendirmesi**\n",
+        "Bankalar, hastaneler, fabrikalar veya farklı işletme birimleri benzer girdiler kullanarak farklı çıktılar üretirler. Bu durumda hangi birimin daha verimli çalıştığını belirlemek için çok değişkenli analiz yöntemlerine ihtiyaç duyulur.Bu amaçla kullanılan yöntemlerden biri Veri Zarflama Analizi (Data Envelopment Analysis – DEA) yöntemidir.\n",
+        "DEA yönteminin temel mantığı şudur: Her bir birim kendi lehine en uygun ağırlıkları seçerek çıktılarını maksimize etmeye çalışır. Ancak bu ağırlıklar seçilirken diğer birimlerin etkinlik skorlarının 1’den büyük olmaması gerekir. Bu sayede tüm birimler aynı üretim sınırı içinde karşılaştırılmış olur"
+      ],
+      "metadata": {
+        "id": "bPTSNQtGfEFD"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "**A- İlk birim için modeli açık olarak yazınız**\n",
+        "Her bir birim için amaç:\n",
+        "\n",
+        "çıktıların ağırlıklı toplamını maksimize etmek\n",
+        "\n",
+        "maks skork​=r=1∑s​Ur​Yrk​\n",
+        "\n",
+        " Ancak yalnızca çıktıyı büyütmek yeterli değildir. Aynı zamanda girdiler de kontrol edilmelidir. Bu nedenle aşağıdaki normalizasyon kısıtı kullanılır:\n",
+        "\n",
+        "Kısıtlar;\n",
+        "\n",
+        "1.Girdilerin ağırlıklı toplamı = 1\n",
+        "\n",
+        "2.Diğer tüm birimler için etkinlik ≤ 1\n",
+        "\n",
+        "3.Ağırlıklar negatif olmması gerekiyor\n"
+      ],
+      "metadata": {
+        "id": "cEdmN2HWXgvN"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Birim için modeli açık yazacak olursak\n",
+        "y1=1.35 ,y2=60 ,x1=7.1 ,x2=0.15\n",
+        "\n",
+        "**Amaç fonkisyonu** ise\n",
+        "\n",
+        "maxZ=1.35u1​+60u2​\n",
+        "\n",
+        "**Normalizasyon kısıtı**\n",
+        "\n",
+        "7.2\n",
+        "𝑣\n",
+        "1\n",
+        "+\n",
+        "0.15\n",
+        "𝑣\n",
+        "2=1\n",
+        "\n",
+        "   "
+      ],
+      "metadata": {
+        "id": "zslWGb-c0HFT"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Diğer birimler içinde yerine koyacak olursak\n",
+        "\n",
+        "**Birim 1**\n",
+        "\n",
+        "1.35\n",
+        "𝑢\n",
+        "1\n",
+        "+\n",
+        "60\n",
+        "𝑢\n",
+        "2\n",
+        "−\n",
+        "7.2\n",
+        "𝑣\n",
+        "1\n",
+        "−\n",
+        "0.15\n",
+        "𝑣\n",
+        "2\n",
+        "≤\n",
+        "0\n",
+        "\n",
+        "**Birim 2**\n",
+        "\n",
+        "1.1\n",
+        "𝑢\n",
+        "1\n",
+        "+\n",
+        "6\n",
+        "𝑢\n",
+        "2\n",
+        "−\n",
+        "4.8\n",
+        "𝑣\n",
+        "1\n",
+        "−\n",
+        "0.05\n",
+        "𝑣\n",
+        "2\n",
+        "≤\n",
+        "0\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "**Birim 3**\n",
+        "\n",
+        "1.27\n",
+        "𝑢\n",
+        "1\n",
+        "+\n",
+        "45\n",
+        "𝑢\n",
+        "2\n",
+        "−\n",
+        "5\n",
+        "𝑣\n",
+        "1\n",
+        "−\n",
+        "1.27\n",
+        "𝑣\n",
+        "2\n",
+        "≤0\n",
+        "\n",
+        "...\n",
+        "\n",
+        "Birim 15'e kadar devam eder."
+      ],
+      "metadata": {
+        "id": "V2X71aPG1znO"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "B-Pythonla Modelleme"
+      ],
+      "metadata": {
+        "id": "ujFZ8mni2rt4"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "from scipy.optimize import linprog"
+      ],
+      "metadata": {
+        "id": "mgSDSfe926fY"
+      },
+      "execution_count": 1,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "import numpy as np\n",
+        "from scipy.optimize import linprog\n",
+        "\n",
+        "Y = np.array([\n",
+        "[1.35,60],\n",
+        "[1.1,6],\n",
+        "[1.27,45],\n",
+        "[0.66,1.5],\n",
+        "[0.05,50],\n",
+        "[0.3,1],\n",
+        "[1,5],\n",
+        "[1,15],\n",
+        "[1.1,10],\n",
+        "[1,6],\n",
+        "[0.9,30],\n",
+        "[0.15,13.6],\n",
+        "[1.2,10],\n",
+        "[1.2,30],\n",
+        "[1,47]\n",
+        "])\n",
+        "\n",
+        "X = np.array([\n",
+        "[7.2,0.15],\n",
+        "[4.8,0.05],\n",
+        "[5,1.27],\n",
+        "[7.2,0.025],\n",
+        "[9.6,0.25],\n",
+        "[1.07,0.1],\n",
+        "[1.76,0.1],\n",
+        "[3.2,0.1],\n",
+        "[6.72,0.2],\n",
+        "[2.4,0.05],\n",
+        "[2.88,0.5],\n",
+        "[6.9,1],\n",
+        "[3.2,0.05],\n",
+        "[4,0.05],\n",
+        "[3.68,1]\n",
+        "])\n",
+        "\n",
+        "n = 15\n",
+        "scores = []\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "for k in range(n):\n",
+        "  c = [-Y[k,0], -Y[k,1], 0, 0]\n",
+        "\n",
+        "    A_eq = [[0,0,X[k,0],X[k,1]]]\n",
+        "    b_eq = [1]\n",
+        "\n",
+        "    A_ub = []\n",
+        "    b_ub = []\n",
+        "\n",
+        "    for j in range(n):\n",
+        "        A_ub.append([Y[j,0],Y[j,1],-X[j,0],-X[j,1]])\n",
+        "        b_ub.append(0)\n",
+        "\n",
+        "    bounds = [(0,None),(0,None),(0,None),(0,None)]\n",
+        "\n",
+        "    res = linprog(c,A_ub=A_ub,b_ub=b_ub,A_eq=A_eq,b_eq=b_eq,bounds=bounds)\n",
+        "\n",
+        "    scores.append(-res.fun)\n",
+        "\n",
+        "for i,s in enumerate(scores):\n",
+        "    print(\"Birim\",i+1,\"Etkinlik Skoru:\",round(s,4))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "id": "2eBpWtgT57pV",
+        "outputId": "31af54bb-f6aa-4a4e-9c38-d394b4eedefc"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Birim 1 Etkinlik Skoru: 1.0\n",
+            "Birim 2 Etkinlik Skoru: 0.9038\n",
+            "Birim 3 Etkinlik Skoru: 0.8004\n",
+            "Birim 4 Etkinlik Skoru: 1.0\n",
+            "Birim 5 Etkinlik Skoru: 0.6182\n",
+            "Birim 6 Etkinlik Skoru: 0.4935\n",
+            "Birim 7 Etkinlik Skoru: 1.0\n",
+            "Birim 8 Etkinlik Skoru: 0.792\n",
+            "Birim 9 Etkinlik Skoru: 0.3784\n",
+            "Birim 10 Etkinlik Skoru: 1.0\n",
+            "Birim 11 Etkinlik Skoru: 1.0\n",
+            "Birim 12 Etkinlik Skoru: 0.1872\n",
+            "Birim 13 Etkinlik Skoru: 1.0\n",
+            "Birim 14 Etkinlik Skoru: 1.0\n",
+            "Birim 15 Etkinlik Skoru: 1.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Eğer bir birimin etkinlik skoru 1 çıkıyorsa, bu o birimin mevcut veri seti içinde en iyi performans gösteren birimler arasında olduğunu gösterir. Yani o birim, sahip olduğu girdileri kullanarak mümkün olan en iyi çıktıyı üretmektedir. Bu tür birimler modelde etkin birimler olarak kabul edilir.\n",
+        "\n",
+        "Eğer etkinlik skoru 1’den küçükse, bu o birimin aynı girdilerle daha fazla çıktı üretebileceğini veya girdilerini daha verimli kullanabileceğini gösterir. Başka bir deyişle, veri setinde bulunan bazı birimler aynı işi daha verimli şekilde yapmaktadır. Bu yüzden skoru 1’den küçük olan birimler göreli olarak etkin değildir.\n",
+        "\n",
+        "Bu sonuçlara göre 1, 4, 7, 10, 11, 13, 14 ve 15 numaralı birimler etkin olarak bulunmuştur. Bu birimler girdilerini en verimli şekilde kullanarak maksimum çıktıyı üretmektedir. Diğer birimler ise göreli olarak daha düşük performans göstermektedir. Özellikle 12. birim en düşük etkinlik skoruna sahiptir ve girdilerini daha verimli kullanabilecek potansiyele sahiptir."
+      ],
+      "metadata": {
+        "id": "t0kCzP3j6XHb"
+      }
+    }
+  ]
+}
